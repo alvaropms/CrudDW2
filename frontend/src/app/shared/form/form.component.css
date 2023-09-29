@@ -1,0 +1,22 @@
+form {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        margin: 4px 0;
+    }
+
+    > input, p-inputNumber {
+        margin-bottom: 16px !important;
+    }
+
+    > .actions {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 16px;
+    }
+
+    > p-inputNumber * {
+        width: 100% !important;
+    }
+}

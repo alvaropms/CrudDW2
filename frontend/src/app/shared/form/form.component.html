@@ -1,0 +1,23 @@
+<form [formGroup]="form.group" (ngSubmit)="form.submit()">
+    <ng-container *ngFor="let field of form.fields" >
+        <ng-container [ngSwitch]="field.type">
+            <ng-container *ngSwitchCase="'text'">
+                <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
+                <input id="{{field.name}}" type="field.type" pInputText formControlName="{{field.name}}"/>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'integer'">
+                <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
+                <p-inputNumber id="{{field.name}}" inputId="integeronly" formControlName="{{field.name}}"> </p-inputNumber>
+            </ng-container>
+            
+            <ng-container *ngSwitchDefault>
+                <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
+                <input id="{{field.name}}" type="field.type" pInputText formControlName="{{field.name}}"/>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <div class="actions">
+        <p-button *ngFor="let action of form.actions" type="{{action.type}}" label="{{action.label}}" (onClick)="action.action()"></p-button>
+    </div>
+</form>

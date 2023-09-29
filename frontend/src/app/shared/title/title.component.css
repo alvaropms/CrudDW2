@@ -1,0 +1,7 @@
+/*estilizar um h1 para que ele fique no centro e muito bonito */
+.title {
+    text-align: center;
+    margin: 0.5em;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+}
