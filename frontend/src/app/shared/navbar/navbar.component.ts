@@ -33,6 +33,16 @@ export class NavbarComponent implements OnInit{
         items: [],
         routerLink: 'classe'
       },
+      {
+        label: 'Título',
+        items: [],
+        routerLink: 'titulo'
+      },
+      {
+        label: 'Item',
+        items: [],
+        routerLink: 'item'
+      },
     ];
   }
 }

@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { FormComponent } from './form/form.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -30,7 +31,8 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     ButtonModule,
     InputNumberModule,
-    TableModule
+    TableModule,
+    DropdownModule
   ],
   exports: [
     MenuModule,
@@ -43,7 +45,8 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     FormComponent,
     InputNumberModule,
-    TableModule
+    TableModule,
+    DropdownModule
   ]
 })
 export class SharedModule { }
