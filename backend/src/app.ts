@@ -2,7 +2,7 @@ const express = require('express');
 const routesClasse = require('./classe.routes');
 const routesAtor = require('./ator.routes');
 const routesDiretor = require('./diretor.routes');
-const routesTitulo = require('./titulo.routes');
+import { _routes as routesTitulo } from './titulo.routes';
 const routesItem = require('./item.routes');
 const cors =  require('cors');
 const bodyParser = require('body-parser');

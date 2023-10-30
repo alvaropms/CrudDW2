@@ -50,6 +50,7 @@ export class EditarTituloComponent implements OnInit{
       {
         type: 'select',
         name: 'classe_id',
+        label: 'Classe',
         options_label: 'nome',
         options_value: 'id',
         options: this.classes,
@@ -57,6 +58,7 @@ export class EditarTituloComponent implements OnInit{
       {
         type: 'select',
         name: 'diretor_id',
+        label: 'Diretor',
         options_value: 'id',
         options_label: 'nome',
         options: this.diretores,

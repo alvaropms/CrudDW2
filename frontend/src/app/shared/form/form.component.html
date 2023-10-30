@@ -15,6 +15,11 @@
                 <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
                 <p-dropdown id="{{field.name}}" optionValue="{{field.options_value}}" optionLabel="{{field.options_label}}" [options]="field.options" formControlName="{{field.name}}" [style]="{'width':'100%'}"></p-dropdown>
             </ng-container>
+
+            <ng-container *ngSwitchCase="'date'">
+                <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
+                <p-calendar dateFormat="dd/mm/yy" id="{{field.name}}" formControlName="{{field.name}}"></p-calendar>
+            </ng-container>
             
             <ng-container *ngSwitchDefault>
                 <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>

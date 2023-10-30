@@ -12,6 +12,7 @@ import { FormComponent } from './form/form.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -32,7 +33,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     InputNumberModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ],
   exports: [
     MenuModule,
@@ -46,7 +48,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormComponent,
     InputNumberModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule
   ]
 })
 export class SharedModule { }
