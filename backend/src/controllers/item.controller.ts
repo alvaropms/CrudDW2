@@ -4,42 +4,66 @@ const connection = require('../db/connection');
 
 module.exports = {
     async create(request: Request, response: Response) {
-        const item: Item = request.body;
+        try {
+            const item: Item = request.body;
     
-        const [id] = await connection('item').insert(item).returning('id');
+            const [id] = await connection('item').insert(item).returning('id');
     
-        return response.json({ id });
+            return response.json({ id });
+        } catch (error) {
+            return response.status(500).json({ message: 'Error creating item', error });
+        }
     },
     
     async delete(request: Request, response: Response) {
-        const { id } = request.params;
+        try {
+            const { id } = request.params;
     
-        await connection('item').where('id', id).delete();
+            await connection('item').where('id', id).delete();
     
-        return response.status(204).send();
+            return response.status(204).send();
+        } catch (error) {
+            return response.status(500).json({ message: 'Error deleting item', error });
+        }
     },
     
     async update(request: Request, response: Response) {
-        const { id } = request.params;
-        const item: Item = request.body;
-        item.id = Number(id);
+        try {
+            const { id } = request.params;
+            const item: Item = request.body;
+            item.id = Number(id);
     
-        await connection('item').where('id', id).update(item);
+            await connection('item').where('id', id).update(item);
     
-        return response.status(204).send();
+            return response.status(204).send();
+        } catch (error) {
+            return response.status(500).json({ message: 'Error updating item', error });
+        }
     },
     
     async list(request: Request, response: Response) {
-        const itens = await connection('item').select('*');
+        try {
+            const itens = await connection('item').select('*');
     
-        return response.json(itens);
+            return response.json(itens);
+        } catch (error) {
+            return response.status(500).json({ message: 'Error listing items', error });
+        }
     },
     
     async get(request: Request, response: Response) {
-        const { id } = request.params;
+        try {
+            const { id } = request.params;
     
-        const item = await connection('item').where('id', id).first();
+            const item = await connection('item').where('id', id).first();
     
-        return response.json(item);
+            if (!item) {
+                return response.status(404).json({ message: 'Item not found' });
+            }
+    
+            return response.json(item);
+        } catch (error) {
+            return response.status(500).json({ message: 'Error getting item', error });
+        }
     }
 }

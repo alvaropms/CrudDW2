@@ -20,6 +20,9 @@ export class ListarItemComponent implements OnInit {
   listarItems() {
     this.itemService.listar().subscribe((items: Item[]) => {
         this.items = items;
+      },
+      error => {
+        alert('Erro ao carregar a lista de items')
       }
     );
   }
@@ -29,6 +32,9 @@ export class ListarItemComponent implements OnInit {
       this.itemService.excluir(id).subscribe(
         data => {
           this.listarItems();
+        },
+        error => {
+          alert('Erro ao excluir item');
         }
       );
     }

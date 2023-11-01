@@ -19,6 +19,9 @@ export class CadastroDiretorComponent {
       this.diretorService.criar(this.group.value).subscribe(
         data => {
           this.router.navigate(['/diretor']);
+        },
+        error => {
+          alert('Erro ao criar diretor');
         }
       );
     },

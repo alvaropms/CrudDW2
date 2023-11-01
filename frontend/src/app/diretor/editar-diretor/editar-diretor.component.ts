@@ -20,6 +20,9 @@ export class EditarDiretorComponent implements OnInit{
       this.diretorService.atualizar(this.id, this.group.value).subscribe(
         () => {
           this.router.navigate(['/diretor']);
+        },
+        () => {
+          alert('Erro ao atualizar diretor');
         }
       );
     },
@@ -48,6 +51,9 @@ export class EditarDiretorComponent implements OnInit{
     this.diretorService.buscarPorId(this.id).subscribe(
       data => {
         this.group.patchValue(data);
+      },
+      error => {
+        alert('Erro ao carregar diretor');
       }
     );
   }

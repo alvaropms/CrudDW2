@@ -26,13 +26,16 @@ export class EditarItemComponent implements OnInit {
       this.itemService.atualizar(this.id, this.group.value).subscribe(
         data => {
           this.router.navigate(['/item']);
+        },
+        error => {
+          alert('Erro ao atualizar item');
         }
       );
     },
     group: this.group,
     fields: [
       {
-        type: 'text',
+        type: 'integer',
         name: 'num_serie',
         label: 'Número de Série',
       },
@@ -79,9 +82,15 @@ export class EditarItemComponent implements OnInit {
           (data: any) => {
             this.group.patchValue(data);
             this.group.controls['dt_aquisicao'].setValue(new Date(data.dt_aquisicao));
+          },
+          error => {
+            alert('Erro ao carregar item');
           }
         );
         
+      },
+      error => {
+        alert('Erro ao listar títulos');
       }
     );
   }

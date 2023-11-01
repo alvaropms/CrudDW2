@@ -7,10 +7,13 @@ export async function up(knex: Knex): Promise<void> {
         table.string('nome').notNullable();
         table.integer('ano').notNullable();
         table.string('sinopse').notNullable();
+        table.string('categoria').notNullable();
         table.integer('classe_id').notNullable();
         table.foreign('classe_id').references('id').inTable('classe');
         table.integer('diretor_id').notNullable();
         table.foreign('diretor_id').references('id').inTable('diretor');
+        table.integer('ator_id').notNullable();
+        table.foreign('ator_id').references('id').inTable('ator');
       });
 }
 

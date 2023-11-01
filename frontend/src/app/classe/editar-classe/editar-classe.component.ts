@@ -21,6 +21,9 @@ export class EditarClasseComponent implements OnInit{
       this.classeService.atualizar(this.id, this.group.value).subscribe(
         () => {
           this.router.navigate(['/classe']);
+        },
+        () => {
+          alert('Erro ao atualizar classe');
         }
       );
     },
@@ -59,6 +62,9 @@ export class EditarClasseComponent implements OnInit{
     this.classeService.buscarPorId(this.id).subscribe(
       data => {
         this.group.patchValue(data);
+      },
+      error => {
+        alert('Erro ao carregar classe');
       }
     );
   }

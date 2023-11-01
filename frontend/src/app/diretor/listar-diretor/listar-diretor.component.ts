@@ -20,6 +20,9 @@ export class ListarDiretorComponent {
   listarDiretores() {
     this.diretorService.listar().subscribe((diretores) => {
         this.diretores = diretores;
+      },
+      error => {
+        alert('Erro ao carregar a lista de diretores')
       }
     );
   }
@@ -29,6 +32,9 @@ export class ListarDiretorComponent {
       this.diretorService.excluir(id).subscribe(
         data => {
           this.listarDiretores();
+        },
+        error => {
+          alert('Erro ao excluir diretor');
         }
       );
     }

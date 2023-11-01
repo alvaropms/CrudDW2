@@ -25,14 +25,17 @@ export class CadastroItemComponent {
     submit: () => {
       this.itemService.criar(this.group.value).subscribe(
         data => {
-          this.router.navigate(['/titulo']);
+          this.router.navigate(['/item']);
+        },
+        error => {
+          alert('Erro ao criar item');
         }
       );
     },
     group: this.group,
     fields: [
       {
-        type: 'text',
+        type: 'integer',
         name: 'num_serie',
         label: 'Número de Série',
       },
@@ -68,6 +71,9 @@ export class CadastroItemComponent {
     this.tituloService.listar().subscribe(
       data => {
         this.titulos.push(...data);
+      },
+      error => {
+        alert('Erro ao carregar a lista de títulos');
       }
     );
   }

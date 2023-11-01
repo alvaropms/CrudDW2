@@ -22,6 +22,9 @@ export class CadastroClasseComponent {
       this.classeService.criar(this.group.value).subscribe(
         data => {
           this.router.navigate(['/classe']);
+        },
+        error => {
+          alert('Erro ao criar classe');
         }
       );
     },

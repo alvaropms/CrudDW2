@@ -21,6 +21,9 @@ export class ListarAtorComponent implements OnInit {
   listarAtores() {
     this.atorService.listar().subscribe((atores) => {
         this.atores = atores;
+      },
+      error => {
+        alert('Erro ao carregar a lista de atores')
       }
     );
   }
@@ -30,6 +33,9 @@ export class ListarAtorComponent implements OnInit {
       this.atorService.excluir(id).subscribe(
         data => {
           this.listarAtores();
+        },
+        error => {
+          alert('Erro ao excluir ator');
         }
       );
     }

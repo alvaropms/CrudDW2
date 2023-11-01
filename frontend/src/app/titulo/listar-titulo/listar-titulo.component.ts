@@ -20,6 +20,9 @@ export class ListarTituloComponent implements OnInit{
   listarTitulos() {
     this.tituloService.listar().subscribe((titulos) => {
         this.titulos = titulos;
+      },
+      error => {
+        alert('Erro ao carregar a lista de titulos')
       }
     );
   }
@@ -29,6 +32,9 @@ export class ListarTituloComponent implements OnInit{
       this.tituloService.excluir(id).subscribe(
         data => {
           this.listarTitulos();
+        },
+        error => {
+          alert('Erro ao excluir título');
         }
       );
     }

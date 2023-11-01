@@ -20,6 +20,9 @@ export class CadastroAtorComponent {
       this.atorService.criar(this.group.value).subscribe(
         data => {
           this.router.navigate(['/ator']);
+        },
+        error => {
+          alert('Erro ao criar ator');
         }
       );
     },

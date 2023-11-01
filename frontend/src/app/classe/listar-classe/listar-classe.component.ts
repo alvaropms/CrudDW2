@@ -20,6 +20,9 @@ export class ListarClasseComponent {
   listarClasse() {
     this.classeService.listar().subscribe((classes) => {
         this.classes = classes;
+      },
+      error => {
+        alert('Erro ao carregar a lista de classes')
       }
     );
   }
@@ -29,6 +32,9 @@ export class ListarClasseComponent {
       this.classeService.excluir(id).subscribe(
         data => {
           this.listarClasse();
+        },
+        error => {
+          alert('Erro ao excluir classe');
         }
       );
     }

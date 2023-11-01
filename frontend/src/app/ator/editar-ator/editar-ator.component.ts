@@ -19,6 +19,9 @@ export class EditarAtorComponent implements OnInit {
       this.atorService.atualizar(this.id,this.group.value).subscribe(
         data => {
           this.router.navigate(['/ator']);
+        },
+        error => {
+          alert('Erro ao atualizar ator');
         }
       );
     },
@@ -48,6 +51,9 @@ export class EditarAtorComponent implements OnInit {
     this.atorService.buscarPorId(this.id).subscribe(
       data => {
         this.group.patchValue(data);
+      },
+      error => {
+        alert('Erro ao carregar ator');
       }
     );
   }

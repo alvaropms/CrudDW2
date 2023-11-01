@@ -7,6 +7,8 @@ import { DiretorService } from 'src/app/diretor/diretor.service';
 import Diretor from 'src/app/diretor/models/diretor.model';
 import { FormModel } from 'src/app/shared/form/models/form';
 import { TituloService } from '../titulo.service';
+import { AtorService } from 'src/app/ator/ator.service';
+import Ator from 'src/app/ator/models/ator.model';
 
 @Component({
   selector: 'app-editar-titulo',
@@ -16,11 +18,14 @@ import { TituloService } from '../titulo.service';
 export class EditarTituloComponent implements OnInit{
   diretores: Diretor[] = [];
   classes: Classe[] = [];
+  atores: Ator[] = [];
 
   group: FormGroup = new FormGroup({
     nome: new FormControl(''),
     ano: new FormControl(''),
     sinopse: new FormControl(''),
+    categoria: new FormControl(''),
+    ator_id: new FormControl(''),
     classe_id: new FormControl(''),
     diretor_id: new FormControl('')
   });
@@ -30,6 +35,9 @@ export class EditarTituloComponent implements OnInit{
       this.tituloService.atualizar(this.id, this.group.value).subscribe(
         data => {
           this.router.navigate(['/titulo']);
+        },
+        error => {
+          alert('Erro ao atualizar titulo');
         }
       );
     },
@@ -46,6 +54,10 @@ export class EditarTituloComponent implements OnInit{
       {
         type: 'text',
         name: 'sinopse',
+      },
+      {
+        type: 'text',
+        name: 'categoria',
       },
       {
         type: 'select',
@@ -75,7 +87,7 @@ export class EditarTituloComponent implements OnInit{
 
   id: number = 0;
 
-  constructor(private tituloService: TituloService, private router: Router, private diretorService: DiretorService, private classeService: ClasseService, private route: ActivatedRoute) {
+  constructor(private tituloService: TituloService, private router: Router, private diretorService: DiretorService, private classeService: ClasseService, private atoresService: AtorService, private route: ActivatedRoute) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
   }
 
@@ -88,13 +100,34 @@ export class EditarTituloComponent implements OnInit{
           data => {
             this.classes.push(...data);
 
-            this.tituloService.buscarPorId(this.id).subscribe(
+            this.atoresService.listar().subscribe(
               data => {
-                this.group.patchValue(data);
+                this.atores.push(...data);
+
+                this.tituloService.buscarPorId(this.id).subscribe(
+                  data => {
+                    this.group.patchValue(data);
+                  },
+                  error => {
+                    alert('Erro ao carregar titulo');
+                  }
+                );
+              },
+              error => {
+                alert('Erro ao carregar a lista de atores')
               }
-            );
+            )
+
+
+
+          },
+          error => {
+            alert('Erro ao carregar a lista de classes')
           }
         );
+      },
+      error => {
+        alert('Erro ao carregar a lista de diretores')
       }
     );
   }
