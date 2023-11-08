@@ -4,7 +4,7 @@ export default class Titulo {
     ano?: number;
     sinopse?: string;
     categoria?: string;
-    ator_id?: number;
+    atores_id?: number[];
     classe_id?: number;
     diretor_id?: number;
 }

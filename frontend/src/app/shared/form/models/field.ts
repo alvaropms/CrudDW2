@@ -1,5 +1,5 @@
 export interface FieldModel {
-    type: 'text' | 'password' | 'email' | 'number' | 'date' | 'select' | 'checkbox' | 'radio' | 'textarea' | 'integer';
+    type: 'text' | 'password' | 'email' | 'number' | 'date' | 'select' | 'checkbox' | 'radio' | 'textarea' | 'integer' | 'multiselect';
     name: string;
     label?: string;
     options?: any[];

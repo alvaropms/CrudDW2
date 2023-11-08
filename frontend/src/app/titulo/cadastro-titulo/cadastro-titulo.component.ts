@@ -25,7 +25,7 @@ export class CadastroTituloComponent {
     ano: new FormControl(''),
     sinopse: new FormControl(''),
     categoria: new FormControl(''),
-    ator_id: new FormControl(''),
+    atores_id: new FormControl(''),
     classe_id: new FormControl(''),
     diretor_id: new FormControl('')
   });
@@ -76,9 +76,9 @@ export class CadastroTituloComponent {
         options: this.diretores,
       },
       {
-        type: 'select',
-        name: 'ator_id',
-        label: 'Ator',
+        type: 'multiselect',
+        name: 'atores_id',
+        label: 'Atores',
         options_value: 'id',
         options_label: 'nome',
         options: this.atores,

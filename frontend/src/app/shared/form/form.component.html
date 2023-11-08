@@ -20,6 +20,11 @@
                 <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
                 <p-calendar dateFormat="dd/mm/yy" id="{{field.name}}" formControlName="{{field.name}}"></p-calendar>
             </ng-container>
+
+            <ng-container *ngSwitchCase="'multiselect'">
+                <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
+                <p-multiSelect [options]="field.options" formControlName="{{field.name}}" optionLabel="{{field.options_label}}" optionValue="{{field.options_value}}" [style]="{'width':'100%'}"></p-multiSelect>
+            </ng-container>
             
             <ng-container *ngSwitchDefault>
                 <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>

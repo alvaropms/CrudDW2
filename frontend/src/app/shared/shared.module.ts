@@ -13,6 +13,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 
@@ -34,7 +35,8 @@ import { CalendarModule } from 'primeng/calendar';
     InputNumberModule,
     TableModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    MultiSelectModule
   ],
   exports: [
     MenuModule,
@@ -49,7 +51,8 @@ import { CalendarModule } from 'primeng/calendar';
     InputNumberModule,
     TableModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    MultiSelectModule
   ]
 })
 export class SharedModule { }

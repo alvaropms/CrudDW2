@@ -5,11 +5,24 @@ const connection = require('../db/connection');
 export async function create(request: Request, response: Response) {
     try {
         const titulo: Titulo = request.body;
+        const { atores_id, ...tituloDb } = titulo;
 
-        const [id] = await connection('titulo').insert(titulo).returning('id');
+        const [id] = await connection('titulo').insert(tituloDb).returning('id');
 
-        return response.json({ id });
+        if(atores_id) {
+            const atorPromises = atores_id.map((ator_id: number) => {
+                return connection('ator_titulo').insert({
+                    titulo_id: id.id,
+                    ator_id
+                });
+            });
+    
+            await Promise.all(atorPromises);
+        }
+
+        return response.json(id);
     } catch (error) {
+        console.log(error);
         return response.status(500).json({ message: 'Error creating title', error });
     }
 }
