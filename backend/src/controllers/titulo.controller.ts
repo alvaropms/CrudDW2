@@ -43,9 +43,22 @@ export async function update(request: Request, response: Response) {
     try {
         const { id } = request.params;
         const titulo: Titulo = request.body;
+        const { atores_id, ...tituloDb } = titulo;
         titulo.id = Number(id);
 
-        await connection('titulo').where('id', id).update(titulo);
+        await connection('titulo').where('id', id).update(tituloDb);
+
+        await connection('ator_titulo').where('titulo_id', titulo.id).delete();
+        if(atores_id) {
+            const atorPromises = atores_id.map((ator_id: number) => {
+                return connection('ator_titulo').insert({
+                    titulo_id: titulo.id,
+                    ator_id
+                });
+            });
+    
+            await Promise.all(atorPromises);
+        }
 
         return response.status(204).send();
     } catch (error) {
@@ -67,7 +80,10 @@ export async function get(request: Request, response: Response) {
     try {
         const { id } = request.params;
 
-        const titulo = await connection('titulo').where('id', id).first();
+        const titulo: Titulo = await connection('titulo').where('id', id).first();
+
+        const atores = await connection('ator_titulo').where('titulo_id', id).select('ator_id');
+        titulo.atores_id = atores.map((ator: any) => ator.ator_id);
 
         if (!titulo) {
             return response.status(404).json({ message: 'Title not found' });
