@@ -14,6 +14,7 @@ import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 
@@ -36,7 +37,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     TableModule,
     DropdownModule,
     CalendarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CheckboxModule
   ],
   exports: [
     MenuModule,
@@ -52,7 +54,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     TableModule,
     DropdownModule,
     CalendarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CheckboxModule
   ]
 })
 export class SharedModule { }

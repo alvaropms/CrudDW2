@@ -3,6 +3,8 @@ const routesClasse = require('./classe.routes');
 const routesAtor = require('./ator.routes');
 const routesDiretor = require('./diretor.routes');
 import { _routes as routesTitulo } from './titulo.routes';
+import { routesLocacao } from './locacao.routes';
+import { routesCliente } from './cliente.routes';
 const routesItem = require('./item.routes');
 const cors =  require('cors');
 const bodyParser = require('body-parser');
@@ -21,6 +23,8 @@ app.use(routesAtor);
 app.use(routesDiretor);
 app.use(routesTitulo);
 app.use(routesItem);
+app.use(routesLocacao);
+app.use(routesCliente);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

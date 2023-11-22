@@ -10,7 +10,7 @@ module.exports = {
         const [id] = await connection('diretor').insert(diretor).returning('id');
 
         return response.json({ id });
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error creating director', error });
     }
 },
@@ -22,7 +22,7 @@ async delete(request: Request, response: Response) {
         await connection('diretor').where('id', id).delete();
 
         return response.status(204).send();
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error deleting director', error });
     }
 },
@@ -36,7 +36,7 @@ async update(request: Request, response: Response) {
         await connection('diretor').where('id', id).update(diretor);
 
         return response.status(204).send();
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error updating director', error });
     }
 },
@@ -46,7 +46,7 @@ async list(request: Request, response: Response) {
         const diretores = await connection('diretor').select('*');
 
         return response.json(diretores);
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error listing directors', error });
     }
 },
@@ -62,7 +62,7 @@ async get(request: Request, response: Response) {
         }
 
         return response.json(diretor);
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error getting director', error });
     }
 }

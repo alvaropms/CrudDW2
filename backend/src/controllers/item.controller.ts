@@ -10,7 +10,7 @@ module.exports = {
             const [id] = await connection('item').insert(item).returning('id');
     
             return response.json({ id });
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error creating item', error });
         }
     },
@@ -22,7 +22,7 @@ module.exports = {
             await connection('item').where('id', id).delete();
     
             return response.status(204).send();
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error deleting item', error });
         }
     },
@@ -36,7 +36,7 @@ module.exports = {
             await connection('item').where('id', id).update(item);
     
             return response.status(204).send();
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error updating item', error });
         }
     },
@@ -46,7 +46,7 @@ module.exports = {
             const itens = await connection('item').select('*');
     
             return response.json(itens);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error listing items', error });
         }
     },
@@ -62,7 +62,7 @@ module.exports = {
             }
     
             return response.json(item);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error getting item', error });
         }
     }

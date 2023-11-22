@@ -5,4 +5,5 @@ export interface FieldModel {
     options?: any[];
     options_label?: string;
     options_value?: string;
+    disabled?: () => boolean;
 }

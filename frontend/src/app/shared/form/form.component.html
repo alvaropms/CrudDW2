@@ -1,6 +1,6 @@
 <form [formGroup]="form.group" (ngSubmit)="form.submit()">
-    <ng-container *ngFor="let field of form.fields" >
-        <ng-container [ngSwitch]="field.type">
+    <ng-container *ngFor="let field of form.fields">
+        <ng-container [ngSwitch]="field.type" *ngIf="(field.disabled && !field.disabled()) || !field.disabled">
             <ng-container *ngSwitchCase="'text'">
                 <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
                 <input id="{{field.name}}" type="field.type" pInputText formControlName="{{field.name}}"/>
@@ -24,6 +24,11 @@
             <ng-container *ngSwitchCase="'multiselect'">
                 <label htmlFor="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
                 <p-multiSelect [options]="field.options" formControlName="{{field.name}}" optionLabel="{{field.options_label}}" optionValue="{{field.options_value}}" [style]="{'width':'100%'}"></p-multiSelect>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'checkbox'">
+                <label for="{{field.name}}">{{field.label ? field.label : field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</label>
+                <p-checkbox formControlName="{{field.name}}" [binary]="true" inputId="{{field.name}}"></p-checkbox>
             </ng-container>
             
             <ng-container *ngSwitchDefault>

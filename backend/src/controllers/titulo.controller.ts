@@ -21,7 +21,7 @@ export async function create(request: Request, response: Response) {
         }
 
         return response.json(id);
-    } catch (error) {
+    } catch (error) { console.log(error);
         console.log(error);
         return response.status(500).json({ message: 'Error creating title', error });
     }
@@ -34,7 +34,7 @@ export async function deleteItem(request: Request, response: Response) {
         await connection('titulo').where('id', id).delete();
 
         return response.status(204).send();
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error deleting title', error });
     }
 }
@@ -61,7 +61,7 @@ export async function update(request: Request, response: Response) {
         }
 
         return response.status(204).send();
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error updating title', error });
     }
 }
@@ -71,7 +71,7 @@ export async function list(request: Request, response: Response) {
         const titulos = await connection('titulo').select('*');
 
         return response.json(titulos);
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error listing titles', error });
     }
 }
@@ -90,7 +90,7 @@ export async function get(request: Request, response: Response) {
         }
 
         return response.json(titulo);
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error getting title', error });
     }
 }

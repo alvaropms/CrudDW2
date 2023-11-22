@@ -10,7 +10,7 @@ module.exports = {
         const [id] = await connection('classe').insert(classe).returning('id');
 
         return response.json({ id });
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error creating class', error });
     }
 },
@@ -22,7 +22,7 @@ async delete(request: Request, response: Response) {
         await connection('classe').where('id', id).delete();
 
         return response.status(204).send();
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error deleting class', error });
     }
 },
@@ -36,7 +36,7 @@ async update(request: Request, response: Response) {
         await connection('classe').where('id', id).update(classe);
 
         return response.status(204).send();
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error updating class', error });
     }
 },
@@ -46,7 +46,7 @@ async list(request: Request, response: Response) {
         const classes = await connection('classe').select('*');
 
         return response.json(classes);
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error listing classes', error });
     }
 },
@@ -62,7 +62,7 @@ async get(request: Request, response: Response) {
         }
 
         return response.json(classe);
-    } catch (error) {
+    } catch (error) { console.log(error);
         return response.status(500).json({ message: 'Error getting class', error });
     }
 }

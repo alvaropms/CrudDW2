@@ -10,7 +10,7 @@ module.exports = {
             const [id] = await connection('ator').insert(ator).returning('id');
     
             return response.json(id);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json(error);
         }
 
@@ -24,7 +24,7 @@ module.exports = {
             await connection('ator').where('id', id).delete();
     
             return response.status(204).send();
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error deleting actor', error });
         }
     },
@@ -38,7 +38,7 @@ module.exports = {
             await connection('ator').where('id', id).update(ator);
     
             return response.status(204).send();
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error updating actor', error });
         }
     },
@@ -48,7 +48,7 @@ module.exports = {
             const atores = await connection('ator').select('*');
     
             return response.json(atores);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error listing actors', error });
         }
     },
@@ -64,7 +64,7 @@ module.exports = {
             }
     
             return response.json(ator);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return response.status(500).json({ message: 'Error getting actor', error });
         }
     }

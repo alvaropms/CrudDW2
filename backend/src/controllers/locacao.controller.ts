@@ -2,9 +2,8 @@ import { Request, Response } from 'express';
 import Locacao from '../models/locacao.model';
 const connection = require('../db/connection');
 
-module.exports = {
 
-    async create(req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
         try {
             const locacao: Locacao = req.body;
 
@@ -13,34 +12,34 @@ module.exports = {
             locacao.id = id;
 
             return res.status(201).json(locacao);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return res.status(500).json({ error });
         }
-    },
+}
 
-    async delete(req: Request, res: Response) {
+export async function deleteItem(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
             await connection('locacao').where('id', id).delete();
 
             return res.status(204).send();
-        } catch (error) {
+        } catch (error) { console.log(error);
             return res.status(500).json({ error });
         }
-    },
+}
 
-    async list(req: Request, res: Response) {
+export async function list(req: Request, res: Response) {
         try {
             const locacoes = await connection('locacao').select('*');
 
             return res.json(locacoes);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return res.status(500).json({ error });
         }
-    },
+}
 
-    async get(req: Request, res: Response) {
+export async function get(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -51,12 +50,12 @@ module.exports = {
             }
 
             return res.json(cliente);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return res.status(500).json({ error });
         }
-    },
+}
 
-    async update(req: Request, res: Response) {
+export async function update(req: Request, res: Response) {
         try {
             const { id } = req.params;
             const locacao: Locacao = req.body;
@@ -68,8 +67,7 @@ module.exports = {
             }
 
             await connection('locacao').where('id', id).update(locacao);
-        } catch (error) {
+        } catch (error) { console.log(error);
             return res.status(500).json({ error });
         }
-    }
 }
