@@ -3,6 +3,7 @@ import { ClienteService } from '../cliente.service';
 import { Router } from '@angular/router';
 import { FormModel } from 'src/app/shared/form/models/form';
 import { FormControl, FormGroup } from '@angular/forms';
+import Cliente from '../models/cliente.model';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -10,6 +11,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./cadastro-cliente.component.css']
 })
 export class CadastroClienteComponent {
+  clientes: Cliente[] = [];
+
   group: FormGroup = new FormGroup({});
 
   form: FormModel = {
@@ -32,10 +35,12 @@ export class CadastroClienteComponent {
       {
         type: 'integer',
         name: 'num_inscricao',
+        label: 'Número de Inscrição'
       },
       {
         type: 'date',
         name: 'dt_nascimento',
+        label: 'Data de Nascimento'
       },
       {
         type: 'text',
@@ -64,7 +69,10 @@ export class CadastroClienteComponent {
         label: 'Dependente de',
         disabled: () => {
           return this.group.value.socio;
-        }
+        },
+        options_value: 'id',
+        options_label: 'nome',
+        options: this.clientes, 
       },
     ],
     actions: [
@@ -76,6 +84,15 @@ export class CadastroClienteComponent {
     ],
   }
 
-  constructor(private clienteService: ClienteService, private router: Router) { }
+  constructor(private clienteService: ClienteService, private router: Router) {
+    this.clienteService.listar().subscribe(
+      data => {
+        this.clientes.push(...data);
+      },
+      error => {
+        alert('Erro ao listar clientes');
+      }
+    );
+  }
 
 }

@@ -37,10 +37,12 @@ export class EditarClienteComponent {
       {
         type: 'integer',
         name: 'num_inscricao',
+        label: 'Número de Inscrição'
       },
       {
         type: 'date',
         name: 'dt_nascimento',
+        label: 'Data de Nascimento'
       },
       {
         type: 'text',
@@ -70,6 +72,8 @@ export class EditarClienteComponent {
         disabled: () => {
           return this.group.value.socio;
         },
+        options_value: 'id',
+        options_label: 'nome',
         options: this.clientes
       },
     ],
@@ -99,7 +103,7 @@ export class EditarClienteComponent {
 
     this.clienteService.listar().subscribe({
       next: data => {
-        this.clientes = data;
+        this.clientes.push(...data);
       },
       error: error => {
         alert('Erro ao carregar clientes');

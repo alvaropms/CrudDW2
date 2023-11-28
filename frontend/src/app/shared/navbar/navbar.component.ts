@@ -48,6 +48,11 @@ export class NavbarComponent implements OnInit{
         items: [],
         routerLink: 'cliente'
       },
+      {
+        label: 'Locação',
+        items: [],
+        routerLink: 'locacao'
+      },
     ];
   }
 }

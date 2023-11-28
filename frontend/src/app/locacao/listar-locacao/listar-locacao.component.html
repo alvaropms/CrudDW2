@@ -1,0 +1,23 @@
+<app-container>
+    <button pButton type="button" label="Nova Locação" routerLink="/locacao/new"></button>
+    <p-table [value]="locacoes">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Cliente</th>
+            <th>Item</th>
+            <th>Data locação</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-locacao>
+          <tr>
+            <td>{{ locacao.cliente.nome }}</td>
+            <td>{{ locacao.item.num_serie }}</td>
+            <td>{{ locacao.dt_locacao }}</td>
+            <td>
+              <button pButton type="button" label="Editar" routerLink="/locacao/{{ locacao.id }}"></button>
+              <button pButton type="button" label="Excluir" class="p-button-danger" (click)="excluir(locacao.id)"></button>
+            </td>
+          </tr>
+        </ng-template>
+    </p-table>
+</app-container>
