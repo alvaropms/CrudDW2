@@ -3,6 +3,9 @@ import * as LocacaoController from './controllers/locacao.controller';
 
 export const routesLocacao = _express.Router();
 
+
+routesLocacao.post('/locacao/query', LocacaoController.filterLocacao);
+
 /**
  * @swagger
  * /locacao:

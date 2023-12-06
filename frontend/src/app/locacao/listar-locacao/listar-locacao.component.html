@@ -1,5 +1,16 @@
 <app-container>
     <button pButton type="button" label="Nova Locação" routerLink="/locacao/new"></button>
+    <div class="search">
+      <label for="Título">Título</label>
+      <input pInputText id="Título" [formControl]="titulo" />
+
+      <label for="Categoria">Categoria</label>
+      <input pInputText id="Categoria" [formControl]="categoria" />
+
+      <label for="Ator">Ator</label>
+      <input pInputText id="Ator" [formControl]="ator" />
+      <button pButton class="p-button-success" type="button" label="Pesquisar" (click)="filtrar()"></button>
+    </div>
     <p-table [value]="locacoes">
         <ng-template pTemplate="header">
           <tr>

@@ -40,4 +40,9 @@ export class LocacaoService {
     return this.http.post<Locacao>(url, {});
   }
 
+  filtrar(filter: any): Observable<Locacao[]> {
+    const url = `${this.apiUrl}/query`;
+    return this.http.post<Locacao[]>(url, filter);
+  }
+
 }

@@ -113,3 +113,36 @@ export async function returnRentedItem(req: Request, res: Response){
         return res.status(500).json({ error });
     }
 }
+
+export async function filterLocacao(req: Request, res: Response) {
+    
+    try {
+        const { titulo, categoria, ator } = req.body;
+
+        let query = connection('locacao')
+            .join('item', 'locacao.item_id', '=', 'item.id')
+            .join('titulo', 'item.titulo_id', '=', 'titulo.id')
+            .join('ator_titulo', 'ator_titulo.titulo_id', '=', 'titulo.id')
+            .join('ator', 'ator.id', '=', 'ator_titulo.ator_id')
+            .select('locacao.*');
+
+        if (titulo) {
+            query.where('titulo.nome', 'like', `%${titulo}%`);
+        }
+
+        if (categoria) {
+            query.where('titulo.categoria', 'like', `%${categoria}%`);
+        }
+
+        if (ator) {
+            query.where('ator.nome', 'like', `%${ator}%`);
+        }
+
+        const locacoes = await query;
+
+        return res.status(200).json(locacoes);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error });
+    }
+}
