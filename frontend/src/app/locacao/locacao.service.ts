@@ -35,4 +35,9 @@ export class LocacaoService {
     return this.http.delete<Locacao>(url);
   }
 
+  devolver(id: number): Observable<Locacao> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.post<Locacao>(url, {});
+  }
+
 }

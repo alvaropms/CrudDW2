@@ -39,4 +39,15 @@ export class ListarClienteComponent {
       );
     }
   }
+
+  ativarDesativar(id: number) {
+    this.clienteService.mudarStatus(id, !this.clientes.find(c => c.id === id )?.ativo).subscribe(
+      data => {
+        this.listarClientes();
+      },
+      error => {
+        alert('Erro ao mudar status do item');
+      }
+    );
+  }
 }

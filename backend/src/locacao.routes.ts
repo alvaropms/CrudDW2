@@ -135,3 +135,30 @@ routesLocacao.get('/locacao', LocacaoController.list);
  *         description: Internal server error
  */
 routesLocacao.get('/locacao/:id', LocacaoController.get);
+
+/**
+ * @swagger
+ * /locacao/{id}:
+ *   post:
+ *     summary: Return a rented item
+ *     tags: [Locacao]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: Numeric ID of the locacao to return
+ *     responses:
+ *       200:
+ *         description: Item returned successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Locacao'
+ *       404:
+ *         description: Locacao not found
+ *       500:
+ *         description: Internal server error
+ */
+routesLocacao.post('/locacao/:id', LocacaoController.returnRentedItem);

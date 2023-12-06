@@ -6,6 +6,7 @@
             <th>Nome</th>
             <th>Email</th>
             <th>Telefone</th>
+            <th>Ativo?</th>
             <th>Ações</th>
           </tr>
         </ng-template>
@@ -14,9 +15,11 @@
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.endereco }}</td>
             <td>{{ cliente.telefone }}</td>
+            <td>{{ cliente.ativo }}</td>
             <td>
               <button pButton type="button" label="Editar" routerLink="/cliente/{{ cliente.id }}"></button>
               <button pButton type="button" label="Excluir" class="p-button-danger" (click)="excluir(cliente.id)"></button>
+              <button pButton type="button" label="Ativar/Desativar" class="p-button-success" (click)="ativarDesativar(cliente.id)"></button>
             </td>
           </tr>
         </ng-template>

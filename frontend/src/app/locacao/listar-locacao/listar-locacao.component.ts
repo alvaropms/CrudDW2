@@ -16,10 +16,10 @@ export class ListarLocacaoComponent {
   constructor(private locacaoService: LocacaoService, private router: Router, private clienteService: ClienteService, private itemService: ItemService) { }
 
   ngOnInit(): void {
-    this.listarDiretores();
+    this.listarLocacoes();
   }
 
-  listarDiretores() {
+  listarLocacoes() {
     this.locacaoService.listar().subscribe((locacoes) => {
         this.locacoes = locacoes;
         for(let locacao of this.locacoes){
@@ -37,16 +37,19 @@ export class ListarLocacaoComponent {
     );
   }
 
-  excluir(id: number) {
-    if (confirm('Deseja realmente excluir esta locacao?')) {
-      this.locacaoService.excluir(id).subscribe(
-        data => {
-          this.listarDiretores();
-        },
-        error => {
-          alert('Erro ao excluir locacao');
-        }
-      );
-    }
+  devolver(id: number) {
+    this.locacaoService.devolver(id).subscribe(
+      data => {
+        this.listarLocacoes();
+      },
+      error => {
+        alert('Erro ao devolver item');
+      }
+    );
+  }
+
+  getDate(date: string) {
+    if(!date) return '';
+    return new Date(date).toLocaleDateString();
   }
 }

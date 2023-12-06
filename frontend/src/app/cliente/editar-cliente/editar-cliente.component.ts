@@ -91,19 +91,21 @@ export class EditarClienteComponent {
   constructor(private clienteService: ClienteService, private router: Router, private route: ActivatedRoute) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.clienteService.buscarPorId(this.id).subscribe({
-      next: data => {
-        this.group.patchValue(data);
-        this.group.controls['dt_nascimento'].setValue(new Date(data.dt_nascimento));
-      },
-      error: error => {
-        alert('Erro ao carregar cliente');
-      }
-    });
-
     this.clienteService.listar().subscribe({
       next: data => {
         this.clientes.push(...data);
+
+        this.clienteService.buscarPorId(this.id).subscribe({
+          next: data => {
+            this.group.patchValue(data);
+            this.group.controls['dt_nascimento'].setValue(new Date(data.dt_nascimento));
+          },
+          error: error => {
+            alert('Erro ao carregar cliente');
+          }
+        });
+
+        
       },
       error: error => {
         alert('Erro ao carregar clientes');

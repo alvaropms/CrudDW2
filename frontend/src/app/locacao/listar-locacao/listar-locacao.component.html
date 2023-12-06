@@ -6,16 +6,23 @@
             <th>Cliente</th>
             <th>Item</th>
             <th>Data locação</th>
+            <th>Devolução prevista</th>
+            <th>Devolução efetiva</th>
+            <th>Valor cobrado</th>
+            <th>Multa cobrada</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-locacao>
           <tr>
             <td>{{ locacao.cliente.nome }}</td>
             <td>{{ locacao.item.num_serie }}</td>
-            <td>{{ locacao.dt_locacao }}</td>
+            <td>{{ locacao.dt_locacao | date:'shortDate' }}</td>
+            <td>{{locacao.dt_devolucao_prevista | date:'shortDate' }}</td>
+            <td>{{locacao.dt_devolucao_efetiva | date:'shortDate' }}</td>
+            <td>{{locacao.valorCobrado}}</td>
+            <td>{{locacao.multaCobrada}}</td>
             <td>
-              <button pButton type="button" label="Editar" routerLink="/locacao/{{ locacao.id }}"></button>
-              <button pButton type="button" label="Excluir" class="p-button-danger" (click)="excluir(locacao.id)"></button>
+              <button *ngIf="!locacao.dt_devolucao_efetiva" pButton type="button" label="Devolver" class="p-button-danger" (click)="devolver(locacao.id)"></button>
             </td>
           </tr>
         </ng-template>

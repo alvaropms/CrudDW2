@@ -85,7 +85,7 @@ export class CadastroClienteComponent {
   }
 
   constructor(private clienteService: ClienteService, private router: Router) {
-    this.clienteService.listar().subscribe(
+    this.clienteService.listarAtivos().subscribe(
       data => {
         this.clientes.push(...data);
       },

@@ -11,7 +11,7 @@
         <ng-template pTemplate="body" let-item>
           <tr>
             <td>{{ item.num_serie }}</td>
-            <td>{{ item.dt_aquisicao }}</td>
+            <td>{{ item.dt_aquisicao | date:'shortDate' }}</td>
             <td>{{ item.tipo_item }}</td>
             <td>
               <button pButton type="button" label="Editar" routerLink="/item/{{ item.id }}"></button>

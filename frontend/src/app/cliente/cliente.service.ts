@@ -35,4 +35,14 @@ export class ClienteService {
     return this.http.delete<Cliente>(url);
   }
 
+  listarAtivos(): Observable<Cliente[]> {
+    const url = `${this.apiUrl}/ativos`;
+    return this.http.post<Cliente[]>(url, {});
+  }
+
+  mudarStatus(id: number, ativo: boolean): Observable<Cliente> {
+    const url = `${this.apiUrl}/status/${id}`;
+    return this.http.put<Cliente>(url, { ativo });
+  }
+
 }

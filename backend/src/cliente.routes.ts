@@ -135,3 +135,7 @@ routesCliente.get('/cliente', ClienteController.list);
  *         description: Internal server error
  */
 routesCliente.get('/cliente/:id', ClienteController.get);
+
+routesCliente.put('/cliente/status/:id', ClienteController.toggleActive);
+
+routesCliente.post('/cliente/ativos', ClienteController.getActiveClients);
